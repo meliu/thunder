@@ -174,5 +174,6 @@ class QueryItem(dict):
         dict.__init__(self, item)
         self.db = DBOper(table)
 
+    # UPDATE
     def update(self):
         self.db.update_item_by_id(**self)
