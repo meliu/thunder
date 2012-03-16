@@ -29,6 +29,20 @@ class DB():
           `update_time` int(10) DEFAULT '0',
           PRIMARY KEY `id` (`id`)
         ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+        DROP TABLE IF EXISTS `pictures`;
+        CREATE TABLE `pcitures` (
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `name` varchar(30) NOT NULL,
+          `ourl` varchar(100) NOT NULL,
+          `surl` varchar(100) NOT NULL,
+          `create_time` int(10) NOT NULL DEFAULT '0',
+          `update_time` int(10) DEFAUTL '0',
+          PRIMARY KEY (`id`),
+          UNIQUE KEY `name` (`name`),
+          UNIQUE KEY `ourl` (`ourl`),
+          UNIQUE KEY `surl` (`surl`)
+        ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=ut8;
         """
         mdb._ensure_connected()
         mdb.execute(sql)

@@ -2,6 +2,7 @@
 from ext.models import DB
 from ext.models.base import Query
 from ext.models.test import User
+from utils import picture
 from utils import BaseHandler
 
 class Test1(BaseHandler):
@@ -40,11 +41,16 @@ class Test6(BaseHandler):
         user['email'] = 'moosvelf@gmail.com'
         user.update()
 
+class Test7(BaseHandler):
+    def get(self):
+        pass
+
 urls = [
-    ('/test/1', Test1),
-    ('/test/2', Test2),
-    ('/test/3', Test3),
-    ('/test/4', Test4),
-    ('/test/5', Test5),
-    ('/test/6', Test6),
+    ('/test/model/1', Test1),
+    ('/test/model/2', Test2),
+    ('/test/model/3', Test3),
+    ('/test/model/4', Test4),
+    ('/test/model/5', Test5),
+    ('/test/model/6', Test6),
+    ('/test/pic/1', Test7),
 ]

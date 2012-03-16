@@ -2,6 +2,9 @@ import os.path
 
 DEBUG = True
 
+# SAE storage domain name.
+STORAGE_DOMAIN = 'thunder'
+
 # Database Configuration.
 if DEBUG:
     MYSQL_DB = "thunder"
