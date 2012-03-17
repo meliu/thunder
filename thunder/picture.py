@@ -1,12 +1,12 @@
+from __future__ import absolute_import
 import StringIO
 import time
 try:
     import Image
 except:
     from PIL import Image
-import sae.storage
 from str import random_str
-from settings import DEBUG, STORAGE_DOMAIN
+from thunder.settings import DEBUG, STORAGE_DOMAIN
 
 class Picture:
 
@@ -60,6 +60,7 @@ class Picture:
                 pic.save(sulr)
 
             else:
+                import sae.storage
                 s = sae.storage.Client()
 
                 o_obj = sae.storage.Object(self.body)

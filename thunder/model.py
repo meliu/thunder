@@ -1,12 +1,13 @@
+from __future__ import absolute_import
 from datetime import datetime
 from time import time
 from MySQLdb import ProgrammingError
 
 from tornado import database
 
-from settings import MYSQL_DB, MYSQL_USER, MYSQL_PASS,\
+from thunder.settings import MYSQL_DB, MYSQL_USER, MYSQL_PASS,\
         MYSQL_HOST_M, MYSQL_HOST_S, MYSQL_PORT
-from settings import MAX_IDLE_TIME
+from thunder.settings import MAX_IDLE_TIME
 
 mdb = database.Connection("%s:%s" % (MYSQL_HOST_M, str(MYSQL_PORT)), 
         MYSQL_DB, MYSQL_USER, MYSQL_PASS, max_idle_time = MAX_IDLE_TIME)
@@ -114,18 +115,19 @@ class DBOper:
             mdb._ensure_connected()
             return mdb.execute(sql)
 
-class Base:
+class Base(dict):
     '''
     __table__  # Table name.
     __createtable__ # The sql statement to create table.
     '''
 
-    def __init__(self):
+    def __init__(self, item):
+        dict.__init__(self, item)
         self.db = DBOper(self.__table__)
 
     # ADD
     def add(self):
-        self.db.add_item(**self.__dict__)
+        return self.db.add_item(**self)
 
 class Query:
     '''
@@ -172,7 +174,7 @@ class QuerySet:
     # DELETE
     def delete(self): 
         if self.condition:
-            self.db.del_item(**self.condition)
+            return self.db.del_item(**self.condition)
 
     def __iter__(self):
         return self
@@ -189,11 +191,11 @@ class QuerySet:
         else:
             return len(self.db.get_item())
 
-class QueryItem:
+class QueryItem(dict):
     def __init__(self, item, table):
         dict.__init__(self, item)
         self.db = DBOper(table)
 
     # UPDATE
     def update(self):
-        self.db.update_item_by_id(**self.__dict__)
+        self.db.update_item_by_id(**self)

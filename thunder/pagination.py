@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from math import ceil
-from settings import ITEMS_PER_PAGE
+from thunder.settings import ITEMS_PER_PAGE
 
 class Pagination:
     def __init__(self, current_page, total_items):
