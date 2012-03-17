@@ -94,7 +94,7 @@ class DBOper:
             mdb._ensure_connected()
             return mdb.execute(sql)
 
-class Base(dict):
+class Base:
     '''
     __table__  # Table name.
     __createtable__ # The sql statement to create table.
@@ -105,7 +105,7 @@ class Base(dict):
 
     # ADD
     def add(self):
-        self.db.add_item(**self)
+        self.db.add_item(**self.__dict__)
 
 class Query:
     '''
@@ -165,15 +165,15 @@ class QuerySet:
 
     def __len__(self):
         if self.condition:
-            return len(self.i.get_item(**self.condition))
+            return len(self.db.get_item(**self.condition))
         else:
-            return len(self.i.get_item())
+            return len(self.db.get_item())
 
-class QueryItem(dict):
+class QueryItem:
     def __init__(self, item, table):
         dict.__init__(self, item)
         self.db = DBOper(table)
 
     # UPDATE
     def update(self):
-        self.db.update_item_by_id(**self)
+        self.db.update_item_by_id(**self.__dict__)
