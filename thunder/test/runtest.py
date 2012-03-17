@@ -1,8 +1,10 @@
 
+import sys
+sys.path.append('../..')
 import unittest
 
 TEST_MODULES = [
-        'test.test_models'
+        'thunder.test.test_models'
     ]
 
 def all():

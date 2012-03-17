@@ -1,6 +1,16 @@
 from datetime import datetime
 from time import time
+from MySQLdb import ProgrammingError
 from __init__ import mdb, sdb
+
+class DB:
+    @staticmethod
+    def _create_table(sql):
+        try:
+            mdb._ensure_connected()
+            mdb.execute(sql)
+        except ProgrammingError:
+            return 'success'
 
 class DBOper:
     '''

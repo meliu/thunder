@@ -13,37 +13,3 @@ mdb = database.Connection("%s:%s" % (MYSQL_HOST_M, str(MYSQL_PORT)),
         MYSQL_DB, MYSQL_USER, MYSQL_PASS, max_idle_time = MAX_IDLE_TIME)
 sdb = database.Connection("%s:%s" % (MYSQL_HOST_S, str(MYSQL_PORT)),
         MYSQL_DB, MYSQL_USER, MYSQL_PASS, max_idle_time = MAX_IDLE_TIME)
-
-class DB():
-    def _create_table(self):
-        sql = """
-        CREATE DATABASE IF NOT EXISTS `thunder`;
-        USE `thunder`;
-
-        DROP TABLE IF EXISTS `users`;
-        CREATE TABLE `users` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,
-          `email` varchar(32) NOT NULL,
-          `password` varchar(32) NOT NULL,
-          `create_time` int(10) DEFAULT '0',
-          `update_time` int(10) DEFAULT '0',
-          PRIMARY KEY `id` (`id`)
-        ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-        DROP TABLE IF EXISTS `pictures`;
-        CREATE TABLE `pcitures` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,
-          `name` varchar(30) NOT NULL,
-          `ourl` varchar(100) NOT NULL,
-          `surl` varchar(100) NOT NULL,
-          `create_time` int(10) NOT NULL DEFAULT '0',
-          `update_time` int(10) DEFAUTL '0',
-          PRIMARY KEY (`id`),
-          UNIQUE KEY `name` (`name`),
-          UNIQUE KEY `ourl` (`ourl`),
-          UNIQUE KEY `surl` (`surl`)
-        ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=ut8;
-        """
-        mdb._ensure_connected()
-        mdb.execute(sql)
-DB = DB()
