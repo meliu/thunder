@@ -7,6 +7,7 @@ except:
     from PIL import Image
 from str import random_str
 from thunder.settings import DEBUG, STORAGE_DOMAIN
+from thunder.common.models import Picture as Pic
 
 class Picture:
 
@@ -47,6 +48,7 @@ class Picture:
             r['isSupport'] = False
         if pic.format not in forbid_format:
             name = str(int(time.time())) + random_str() + '.' + image.format.lower()
+            r['name'] = name
             o_pic_name = 'origin' + name
             s_pic_name = 'show' + name
             s_pic = pic.resize(self.size)
@@ -70,7 +72,11 @@ class Picture:
                 s_obj = sae.storage.Object(s_pic.tostring())
                 s.put(STORAGE_DOMAIN, s_pic_name, s_obj)
                 surl = s.url(STORAGE_DOMAIN, s_pic_name)
-            r['url'] = surl
+            r['surl'] = surl
+            r['ourl'] = ourl
+
+            # add to the database.
+            Pic(name, ourl, surl).add()
         else:
             r['isSupport'] = False
         return r
