@@ -11,7 +11,7 @@ class Application(tornado.wsgi.WSGIApplication):
             debug = True,
             gzip = True,
             root_path = os.path.dirname(__file__),
-            template_path = os.path.join(os.path.dirname(__file__), "apps/templates/"),
+            template_path = os.path.join(os.path.dirname(__file__), "apps/views/"),
             static_path = os.path.join(os.path.dirname(__file__), "static"),
             cookie_secret = "61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
             xsrf_cookies = True,
