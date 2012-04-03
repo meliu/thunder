@@ -70,9 +70,6 @@ class Image:
             self.up = Upload(self.domain, [self.image])
 
     def save(self):
-        '''
-        Must set user_id by set_user_id().
-        '''
         img = ImageModel()
         self.name, self.url = self.up.upload() # Get the name and url.
         img.add_image(self.name, self.url, self.user_id)
