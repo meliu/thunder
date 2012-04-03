@@ -13,7 +13,7 @@ class ImageModel(Base):
         Base.__init__(self)
         self.tablename = 'images'
 
-    def add_image(self, name, url, user_id):
+    def add_image(self, name, user_id):
         self['name'] = name
         self['create_time'] = int(time.time())
         self['user_id'] = int(user_id)
@@ -72,4 +72,4 @@ class Image:
     def save(self):
         img = ImageModel()
         self.name, self.url = self.up.upload() # Get the name and url.
-        img.add_image(self.name, self.url, self.user_id)
+        img.add_image(self.name, self.user_id)
