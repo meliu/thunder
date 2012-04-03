@@ -1,7 +1,5 @@
 import unittest
 import time
-import sys
-sys.path.append('../..')
 import thunder.db 
 
 class User(thunder.db.Base):
