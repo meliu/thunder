@@ -244,6 +244,10 @@ class Base:
     def sql_str():
         return Finder.sql_str(sql)
 
+    def table(self, name):
+        self.tablename = name
+        return self
+
     def find(self, sql = None, *args):
         finder = Finder(self.tablename)
         if not sql:
@@ -271,6 +275,10 @@ class Base:
     def __delitem__(self, key):
         if self.attr.has_key(key):
             del self.attr[key]
+
+    # Delete all attributes.
+    def clear_attr(self):
+        self.attr = {}
 
     def add(self):
         if len(self.attr) == 0:
