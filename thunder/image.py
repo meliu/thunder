@@ -54,22 +54,20 @@ class Image:
         return a Upload object.
         '''
         if self.verify():
-            self.img = {
+            self.image = {
                 'body': self.img.tostring(),
                 'format': self.img.format
             }
-            self.up =  Upload(self.domain, [img])
-        return None
+            self.up =  Upload(self.domain, [self.image])
 
     def make_icon(self):
         if self.verify():
-            self.icon = self.img.resize(Image.common_size['icon'])
-            self.img = {
+            icon = self.img.resize(Image.common_size['icon'])
+            self.image = {
                 'body': self.icon.tostring(),
                 'format': self.img.format
             }
-            self.up = Upload(self.domain, [icon])
-        return None
+            self.up = Upload(self.domain, [self.image])
 
     def save(self):
         '''
