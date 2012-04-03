@@ -14,7 +14,8 @@ class Upload:
             obj_name = int(time.time()) + random_str(8) + \
                     self.files[0]['format'].lower()
             s.put(self.domain, obj_name, obj)
-            return True
+            obj_url = s.url(self.domain, obj_name)
+            return (obj_name, obj_url)
         except ImportError:
             obj = self.files[0]['body']
             obj_name = int(time.time()) + random_str(8) + \
@@ -22,8 +23,9 @@ class Upload:
             obj_url = '/static/upload/' + obj_name
             with open(obj_url, 'wb') as f:
                 f.write(obj)
+            return (obj_name, obj_url)
         except:
-            return False
+            return None
 
     def upload_all(self, **kwargs):
         try:
