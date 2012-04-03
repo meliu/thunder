@@ -5,7 +5,7 @@ try:
 except:
     from PIL import Image as Img
 from thunder.upload import Upload
-from thunder.db import Base
+from thunder.model import Base
 
 class ImageModel(Base):
 

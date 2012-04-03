@@ -16,7 +16,7 @@ class BaseHandler(tornado.web.RequestHandler):
         return
 
     def db(self):
-        return thunder.db.Base()
+        return thunder.model.Base()
 
     def get_current_user(self):
         pass
