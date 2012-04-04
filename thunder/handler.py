@@ -5,8 +5,13 @@ import thunder
 class BaseHandler(tornado.web.RequestHandler):
 
     def __init__(self, application, request, **kwargs):
-        self._start_time = time.time()
         tornado.web.RequestHandler.__init__(self, application, request, **kwargs)
+
+    def get_current_user(self):
+        user = self.get_secure_cookie("user")
+        if not user:
+            return None
+        return tornado.escape.json_decode(user)
 
     def error(self, **kwargs):
         kwargs['url'] = kwargs.has_key('url') and kwargs['url'] or \
@@ -15,8 +20,6 @@ class BaseHandler(tornado.web.RequestHandler):
         self._finished = True
         return
 
+    @property
     def db(self):
         return thunder.model.Base()
-
-    def get_current_user(self):
-        pass
