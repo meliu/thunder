@@ -3,9 +3,12 @@ import sys
 import tornado.wsgi
 import sae
 
+from apps.controllers.auth import urls as auth_urls
+
 class Application(tornado.wsgi.WSGIApplication):
     def __init__(self):
         handlers = []
+        handlers += auth_urls
 
         settings = dict(
             debug = True,
