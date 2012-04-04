@@ -15,7 +15,9 @@ class SignUp(BaseHandler):
             password = form['password']
             print email
             print password
+        else:
+            print "BAD"
 
 urls = [
-    ('/auth/siginup', SignUp)
+    ('/auth/signup', SignUp)
 ]

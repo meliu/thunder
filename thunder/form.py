@@ -3,28 +3,38 @@ import re
 import tornado.escape
 
 class Form:
-    def __init__(self, **kwargs):
+    def __init__(self, values):
         self.items = []
-        self.values = {}
-        self.kwargs = kwargs
+        self.values = values
         self.msg = ''
 
     def add(self, item):
         self.items.append(item)
         
     def validate(self):
-        for k in self.kwargs:
+        for k in self.values:
             for item in self.items:
                 if item.name == k:
-                    item.set_value(kwargs[k])
+                    item.set_value(self.values[k])
 
         for item in self.items:
             result = item.validate()
-            if result['success']:
-                self.values[item.name] = item.get_value()
-            else:
+            if not result['success']:
                 self.msg = result['msg']
-                return False return True
+                return False 
+        return True
+
+    def __setitem__(self, key, value):
+        if isinstance(value, list):
+            self.values[key] = value
+        else:
+            self.values[key] = [value]
+
+    def __getitem__(self, key):
+        if len(self.values[key]) == 1:
+            return self.values[key][0]
+        else:
+            return self.values
 
 class Validators:
     @staticmethod
@@ -63,17 +73,21 @@ class ItemBase:
         name, value, validators
     '''
     def __init__(self, name, *validators):
-        self.name = self.name
+        self.name = name
         self.validators = validators
+        self.value = ''
 
     def set_value(self, value):
-        self.value = value
+        if len(value) == 1:
+            self.value = value[0]
+        else:
+            self.value = value
 
     def get_value(self):
         return self.value
 
     def validate(self):
-        for v in validators:
+        for v in self.validators:
             if hasattr(Validators, v):
                 result = getattr(Validators, v)(self.value)
                 if not result['success']:
@@ -81,14 +95,17 @@ class ItemBase:
         return {'success': True} 
 
 class Input(ItemBase):
-    '''
-    Input('email', 'isEmail', 'notEmpty')
-    '''
     def __init__(self, name, *validators):
-        self.type = 'text'
         ItemBase.__init__(self, name, *validators)
+
+class Email(ItemBase):
+    def __init__(self, name):
+        ItemBase.__init__(self, name, 'isEmail', 'notEmpty')
+
+class Password(ItemBase):
+    def __init__(self, name):
+        ItemBase.__init__(self, name, 'notEmpty', 'minLength')
 
 class Select(ItemBase):
     def __init__(self, name, *validators):
-        self.type = 'select'
         ItemBase.__init__(self, name, *validators)

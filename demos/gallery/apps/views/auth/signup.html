@@ -2,6 +2,7 @@
 
 {% block content %}
 <form action="" method="post">
+    {{ xsrf_form_html() }}
     <input type='text' name='email'/>
     <input type='password' name='password'/>
     <input type='submit' value="登录"/>
