@@ -4,14 +4,14 @@
 	<meta charset="UTF-8">
     <title>{% block title %}{% end %}</title>
     <link rel="stylesheet" href="{{ static_url('css/bootstrap.css') }}"/>
-    <link rel="stylesheet" href="{{ static_url('css/bootstrap-reponsive.css') }}"/>
-    <script src="{{ static_url('js/libs/jquery-min.js') }}"></script>
-    <script src="{{ static_url('js/libs/underscore-min.js) }}"></script>
-    <script src="{{ static_url('js/libs/backbone-min.js') }}"></script>
+    <link rel="stylesheet" href="{{ static_url('css/bootstrap-responsive.css') }}"/>
+    <script src="{{ static_url('js/libs/jquery/jquery-min.js') }}"></script>
+    <script src="{{ static_url('js/libs/underscore/underscore-min.js') }}"></script>
+    <script src="{{ static_url('js/libs/backbone/backbone-min.js') }}"></script>
 
     {% block head %}{% end %}
 </head>
 <body>
-    {% block body %}{% end %}
+    {% block content %}{% end %}
 </body>
 </html>

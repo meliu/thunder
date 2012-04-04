@@ -1,10 +1,44 @@
 {% extends '../base.html' %}
 
+{% block head %}
+<style>
+    body {
+        background-image: url("{{ static_url('img/bg/grid-18px-masked.png') }}");
+        background-repeat: repeat-x;
+    }
+    input[type='text'], input[type='password'] {
+        height: 40px;
+        line-height: 40px;
+        font-size: 25px;
+    }
+    .control-label {
+        font-size: 25px;
+        margin-top: 10px;
+    }
+    .btn {
+        font-size: 25px;
+        padding: 10px;
+    }
+</style>
+{% end %}
+
 {% block content %}
-<form action="" method="post">
+<form class="form-horizontal" action="" method="post">
     {{ xsrf_form_html() }}
-    <input type='text' name='email'/>
-    <input type='password' name='password'/>
-    <input type='submit' value="登录"/>
+    <fieldset>
+        <label for="email">邮箱</label>
+        <input class="span5" type='text' name='email' 
+            placeholder="请输入邮箱地址"/>
+        <label for="password">密码</label>
+        <input class="span5" type='password' name='password'
+            placeholder="请输入密码"/>
+        <label for="confirm">确认密码</label>
+        <input class="span5" type='password' name='confirm' 
+            placeholder="请再次输入密码"/>
+        <div class="actions">
+            <input class="btn btn-primary" type='submit' value="注册"/>
+            <a class="help-inline" href="/auth/forgot">忘记密码</a>
+        </div>
+    </fieldset>
 </form>
 {% end %}
