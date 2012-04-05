@@ -3,12 +3,12 @@ import sys
 import tornado.wsgi
 import sae
 
-from apps.controllers.auth import urls as auth_urls
+from apps.controllers.gallery import urls as gallery_urls
 
 class Application(tornado.wsgi.WSGIApplication):
     def __init__(self):
         handlers = []
-        handlers += auth_urls
+        handlers += gallery_urls
 
         settings = dict(
             debug = True,

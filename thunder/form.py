@@ -31,10 +31,13 @@ class Form:
             self.values[key] = [value]
 
     def __getitem__(self, key):
-        if len(self.values[key]) == 1:
-            return self.values[key][0]
-        else:
-            return self.values
+        try:
+            if len(self.values[key]) == 1:
+                return self.values[key][0]
+            else:
+                return self.values
+        except KeyError:
+            return None
 
 class Validators:
     @staticmethod
