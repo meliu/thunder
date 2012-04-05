@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block head %}
+{% end %}
+
 {% block header %}
 <div class="navbar">
     <div class="navbar-inner">
@@ -46,6 +49,8 @@
 {% end %}
 
 {% block content %}
+<div class="content row-fluid">
+</div>
 <script src="{{ static_url('js/libs/bootstrap/bootstrap-collapse.js') }}"></script>
 <script src="{{ static_url('js/libs/bootstrap/bootstrap-dropdown.js') }}"></script>
 {% end %}
