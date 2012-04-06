@@ -9,14 +9,19 @@ require.config({
         text: 'libs/require/text',
 
         //  
-        templates: '../templates'
+        templates: '../templates',
+
+        //
+        router: 'router'
     },
     urlArgs: "bust=" + (new Date()).getTime()
 });
 
 require([
-    'views/app',
-], function(AppView) {
+    'app',
+    'router'
+], function(AppView, router) {
     var app = new AppView;
     app.render();
+    router.initialize();
 });
