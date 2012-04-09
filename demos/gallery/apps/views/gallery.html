@@ -4,6 +4,7 @@
 {% end %}
 
 {% block header %}
+<header>
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container">
@@ -21,7 +22,7 @@
                 </ul>
                 {% if current_user %}
                 <ul class="nav pull-right">
-                    <li><button class="btn btn-success shareBtn">Share</button></li>
+                    <li><button class="btn btn-success share-btn">Share</button></li>
                 </ul>
                 <ul class="nav pull-right">
                 	<li class="dropdown">
@@ -49,6 +50,7 @@
         </div>
     </div>
 </div>
+</header>
 {% end %}
 
 {% block content %}
@@ -56,4 +58,8 @@
 </div>
 <script src="{{ static_url('js/libs/bootstrap/bootstrap-collapse.js') }}"></script>
 <script src="{{ static_url('js/libs/bootstrap/bootstrap-dropdown.js') }}"></script>
+{% end %}
+
+{% block hide %}
+<div class="share-box" style="display: none"></div>
 {% end %}

@@ -6,13 +6,19 @@
     <link rel="stylesheet" href="{{ static_url('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ static_url('css/bootstrap-responsive.css') }}"/>
     <script src="{{ static_url('js/libs/jquery/jquery-min.js') }}"></script>
-<!--    <script src="{{ static_url('js/libs/underscore/underscore-min.js') }}"></script>
-<script src="{{ static_url('js/libs/backbone/backbone-min.js') }}"></script>-->
+    <!--    
+    <script src="{{ static_url('js/libs/underscore/underscore-min.js') }}"></script>
+    <script src="{{ static_url('js/libs/backbone/backbone-min.js') }}"></script>
+    -->
     {% block head %}{% end %}
     <script data-main="/static/js/main" src="{{ static_url('js/libs/require/require-min.js') }}"></script>
 </head>
 <body>
-    {% block header %}{% end %}
-    {% block content %}{% end %}
+    <div class="wrapper">
+        {% block header %}{% end %}
+        {% block content %}{% end %}
+        {% block footer %}{% end %}
+    </div>
+    {% block hide %}{% end %}
 </body>
 </html>

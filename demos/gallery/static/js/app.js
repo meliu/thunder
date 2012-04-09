@@ -3,17 +3,15 @@ define([
     'underscore',
     'backbone',
     'views/stream',
-    'views/sharePhoto'
+    'views/header/sharePhoto'
 ], function($, _, Backbone, streamView, sharePhotoView) {
     var AppView = Backbone.View.extend({
+        el: $('header'),
         events: {
-            'click .shareBtn': 'showAlert'
+            'click .share-btn': 'showShareBox'
         },
         initialize: function () {
             streamView.render();
-        },
-        showAlert: function () {
-            window.alert("LOL");
         },
         showShareBox: function () {
             sharePhotoView.render();
