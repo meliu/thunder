@@ -23,3 +23,11 @@ class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
         return thunder.model.Base()
+
+class RESTHandler(BaseHandler):
+    '''
+    The Handler support RESTful.
+    '''
+    def prepare(self):
+        if "X-Http-Method-Override" in self.request.headers:
+            self.request.method = self.request.headers['X-Http-Method-Override']
