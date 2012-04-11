@@ -1,3 +1,6 @@
+/*
+ * Set X-XSRFToken for Ajax Request.
+ */
 $(document).ajaxSend(function(event, xhr, settings) {
     function getCookie(name) {
         var r = document.cookie.match("\\b" + name + "=([^;]*)\\b");
