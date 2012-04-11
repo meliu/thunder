@@ -16,7 +16,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
         !(/^(\/\/|http:|https:).*/.test(url));
     }
     function safeMethod(method) {
-        return (/^GET|HEAD|OPTIONS|TRACE)$/.test(method);
+        return (/^GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
         xhr.setRequestHeader("X-XSRFToken", getCookie('_xsrf'));
