@@ -5,7 +5,7 @@ import tornado.database
 from MySQLdb import ProgrammingError
 try:
     import sae.const
-    MYSQL_HOST_M = sae.const.MYSQL_HOST_M
+    MYSQL_HOST_M = sae.const.MYSQL_HOST
     MYSQL_HOST_S = sae.const.MYSQL_HOST_S
     MYSQL_PORT = sae.const.MYSQL_PORT
     MYSQL_DB = sae.const.MYSQL_DB
@@ -300,7 +300,7 @@ class Base:
 
     def update(self, sql, *args):
         if not self.attr:
-            return false
+            return False
 
         # confirm the data exists.
         if self.find().where(sql, *args).count() != 0:
