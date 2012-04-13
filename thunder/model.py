@@ -241,7 +241,7 @@ class Base:
         self.attr = {}
 
     @staticmethod
-    def sql_str():
+    def sql_str(sql):
         return Finder.sql_str(sql)
 
     def table(self, name):

@@ -35,7 +35,7 @@ class Form:
             if len(self.values[key]) == 1:
                 return self.values[key][0]
             else:
-                return self.values
+                return self.values[key]
         except KeyError:
             return None
 
